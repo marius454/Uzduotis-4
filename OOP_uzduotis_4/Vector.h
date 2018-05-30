@@ -7,8 +7,7 @@
 #include <chrono>
 #include <limits>
 #include <memory>
-
-using std::copy;
+#include <iomanip>
 
 template<typename T>
 class Vector
@@ -357,41 +356,6 @@ T* Vector<T>::emplace(T* pos, Args&&... args)
 	++sz;
 	return pos;
 }
-//{
-//	size_t tempsz = sz;
-//	std::allocator<T> tempalloc;
-//	T* elem2 = tempalloc.allocate(sz);
-//	int i2 = 0;
-//	for (auto i = pos; i != end(); i++) {
-//		elem2[i2] = *i;
-//		i2++;
-//	}
-//	int position = sz - i2;
-//	i2 = 0;
-//
-//	alloc.construct(pos, args...);
-//	auto i = pos + 1;
-//	while (i != end()) {
-//		*i = elem2[i2];
-//		i2++;
-//		i++;
-//	}
-//
-//	if (cp == sz) {
-//		reserve(cp * 2);
-//	}
-//	auto s = end();
-//	*s = elem2[i2];
-//	sz++;
-//
-//	for (size_t i = 0; i != sz; i++) {
-//		tempalloc.destroy(elem + i);
-//	}
-//	tempalloc.deallocate(elem2, sz);
-//	elem2 = nullptr;
-//
-//
-//}
 
 //erase realizacijos
 template<typename T>
@@ -451,15 +415,3 @@ void Vector<T>::swap(Vector& v)
 	elem = temp;
 }
 
-
-
-
-//struct Foo
-//{
-//	int n;
-//	double x;
-//	Foo(int s, double val) {
-//		n = s;
-//		x = val;
-//	}
-//};
