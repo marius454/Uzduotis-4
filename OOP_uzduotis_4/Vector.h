@@ -18,7 +18,11 @@ private:
 	size_t sz;
 	T* elem;
 public:
-	//Default constructors
+
+	typedef templ* iterator;
+	typedef const templ* const_iterator;
+
+	//Constructors
 	Vector() : sz(0), cp(0), elem(new T[cp]) {}
 	Vector(size_t s) {
 		cp = s;
