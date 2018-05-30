@@ -2,7 +2,7 @@
 
 ## "Cool dalykėliai"
 
-1. Kai Visual Studio kompiliatorius automatiskai didina capacity, kitaip nei kiti kompiliatoriai, jis capacity padidina 1,5 karto, o ne 2 kartus. Taip sutaupo naudojamos vietos bet praranda spartos.
+1. Kai Visual Studio kompiliatorius automatiskai didina capacity, kitaip nei kiti kompiliatoriai, jis capacity padidina 1,5 karto, o ne 2 kartus. Taip sutaupo naudojamos vietos, bet praranda spartos.
 
 2. realloc
 
