@@ -19,8 +19,8 @@ private:
 	T* elem;
 public:
 
-	typedef templ* iterator;
-	typedef const templ* const_iterator;
+	typedef T* iterator;
+	typedef const T* const_iterator;
 
 	//Constructors
 	Vector() : sz(0), cp(0), elem(new T[cp]) {}
@@ -129,6 +129,7 @@ public:
 	void resize(size_t size) {
 		elem = (T*)realloc(elem, size * sizeof(T));
 		cp = size;
+		if (sz >= cp) sz = cp;
 	}
 	void shrink_to_fit() {
 		elem = (T*)realloc(elem, sz * sizeof(T));
@@ -138,6 +139,7 @@ public:
 	//clear
 	void clear() {
 		elem = new T[cp];
+		sz = 0;
 	}
 
 	//insert
@@ -274,7 +276,7 @@ T* Vector<T>::insert(T* pos, T&& val)
 		cp = cp * 2;
 		elem = (T*)realloc(elem, cp * sizeof(T));
 	}
-	for (size_t i = sz - 1; i >= x; --i) {
+	for (size_t i = sz; i >= x; --i) {
 		elem[i + 1] = elem[i];
 		if (i == 0) break;
 	}
@@ -291,7 +293,7 @@ T* Vector<T>::insert(T* pos, const T& val)
 		cp = cp * 2;
 		elem = (T*)realloc(elem, cp * sizeof(T));
 	}
-	for (size_t i = sz - 1 ; i >= x; --i) {
+	for (size_t i = sz ; i >= x; --i) {
 		elem[i + 1] = elem[i];
 		if (i == 0) break;
 	}
@@ -308,7 +310,7 @@ T* Vector<T>::insert(T* pos, T* start, T* end)
 		cp = cp * 2;
 		elem = (T*)realloc(elem, cp * sizeof(T));
 	}
-	for (size_t i = sz-1; i >= x; --i) {
+	for (size_t i = sz; i >= x; --i) {
 		elem[i + std::distance(start, end)] = elem[i];
 		if (i == 0) break;
 	}
@@ -329,7 +331,7 @@ T* Vector<T>::insert(T* pos, size_t count, T val)
 		cp = cp * 2;
 		elem = (T*)realloc(elem, cp * sizeof(T));
 	}
-	for (size_t i = sz-1; i >= x; --i) {
+	for (size_t i = sz; i >= x; --i) {
 		elem[i + count + 1] = elem[i];
 		if (i == 0) break;
 	}
@@ -352,7 +354,7 @@ T* Vector<T>::emplace(T* pos, Args&&... args)
 		cp = cp * 2;
 		elem = (T*)realloc(elem, cp * sizeof(T));
 	}
-	for (size_t i = sz-1; i >= x; --i) {
+	for (size_t i = sz; i >= x; --i) {
 		elem[i + 1] = elem[i];
 		if (i == 0) break;
 	}
